@@ -1,13 +1,29 @@
-import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
+import ErrorPage from "./components/ErrorPage";
+import Login from "./components/Login";
 
-const App = () => {
-    return (
-        <div>
-            <h1 className="text-3xl font-bold underline text-center mt-10">
-                Hello, DevCommunity!
-            </h1>
-        </div>
-    );
-};
+// 1. Define the routes as an array of objects
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <AppLayout />,
+        // Built-in error handling
+        errorElement: <ErrorPage />,
+        // Built-in data loading
+        // loader: rootLoader,
+        children: [
+            {
+                path: "/login",
+                element: <Login />,
+            },
+        ],
+    },
+]);
+
+// 2. Use the RouterProvider component
+function App() {
+    return <RouterProvider router={router} />;
+}
 
 export default App;
