@@ -2,6 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
+import Home from "./components/Home";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Profile from "./components/Profile";
 
 // 1. Define the routes as an array of objects
 const router = createBrowserRouter([
@@ -14,6 +18,11 @@ const router = createBrowserRouter([
         // loader: rootLoader,
         children: [
             {
+                index: true,
+                element: <Home />,
+            },
+            { path: "/profile", element: <Profile /> },
+            {
                 path: "/login",
                 element: <Login />,
             },
@@ -23,7 +32,13 @@ const router = createBrowserRouter([
 
 // 2. Use the RouterProvider component
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <>
+            <Provider store={appStore}>
+                <RouterProvider router={router} />
+            </Provider>
+        </>
+    );
 }
 
 export default App;
