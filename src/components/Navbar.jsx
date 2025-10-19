@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
-import { logout } from "../utils/userSlice";
+import { logout } from "../utils/store/userSlice";
+import { removeFeed } from "../utils/store/feedSlice";
 import axios from "axios";
 
 const Navbar = () => {
@@ -21,6 +22,7 @@ const Navbar = () => {
             if (response.status === 200) {
                 // Handle successful logout, e.g., redirect to login page
                 dispatch(logout());
+                dispatch(removeFeed());
                 navigate("/login");
             }
         } catch (error) {
@@ -31,7 +33,9 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100 shadow-sm px-5">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">DevSocial</a>
+                <NavLink to={"/"} className="btn btn-ghost text-xl">
+                    DevSocial
+                </NavLink>
             </div>
 
             {user.isAuthenticated && (

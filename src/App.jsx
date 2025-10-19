@@ -4,8 +4,9 @@ import ErrorPage from "./components/ErrorPage";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+import appStore from "./utils/store/appStore";
 import Profile from "./components/Profile";
+import Feed from "./components/Feed";
 
 // 1. Define the routes as an array of objects
 const router = createBrowserRouter([
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home />,
+                element: <Feed />,
             },
             { path: "/profile", element: <Profile /> },
             {
