@@ -8,6 +8,9 @@ import appStore from "./utils/store/appStore";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // 1. Define the routes as an array of objects
 const router = createBrowserRouter([
     {
@@ -37,6 +40,7 @@ function App() {
         <>
             <Provider store={appStore}>
                 <RouterProvider router={router} />
+                <ToastContainer />
             </Provider>
         </>
     );
