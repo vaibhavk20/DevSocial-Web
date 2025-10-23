@@ -31,14 +31,34 @@ const Feed = () => {
         fetchFeed();
     }, []);
 
+    if (!feedData) return;
+
+    if (feedData.length <= 0) {
+        return (
+            <h1 className=" flex justify-center m-52 text-3xl">
+                No more users!!!!
+            </h1>
+        );
+    }
+
     return (
         feedData && (
-            <div className="flex justify-center align-middle">
+            <div className="flex flex-col items-center gap-4 my-5">
                 <UserCard user={feedData[0]} />
             </div>
         )
-        // feedData?.map((user) => <UserCard key={user._id} user={user} />)
     );
+
+    // return (
+    //     feedData && (
+    //         <div className="flex justify-center align-middle">
+    //             {/* <UserCard user={feedData[0]} /> */}
+    //             {feedData?.map((user) => (
+    //                 <UserCard key={user._id} user={user} />
+    //             ))}
+    //         </div>
+    //     )
+    // );
 };
 
 export default Feed;

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { logout } from "../utils/store/userSlice";
-import { removeFeed } from "../utils/store/feedSlice";
 import axios from "axios";
 
 const Navbar = () => {
@@ -22,7 +21,7 @@ const Navbar = () => {
             if (response.status === 200) {
                 // Handle successful logout, e.g., redirect to login page
                 dispatch(logout());
-                dispatch(removeFeed());
+                // dispatch(removeFeed());
                 navigate("/login");
             }
         } catch (error) {
