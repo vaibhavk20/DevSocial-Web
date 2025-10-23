@@ -73,7 +73,14 @@ const Navbar = () => {
                                 <NavLink to={"/profile"}>Profile</NavLink>
                             </li>
                             <li>
-                                <a>Settings</a>
+                                <NavLink to={"/connections"}>
+                                    Connections
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={"/requests"}>
+                                    Connection Requests
+                                </NavLink>
                             </li>
                             <li>
                                 <NavLink onClick={handleLogout}>Logout</NavLink>

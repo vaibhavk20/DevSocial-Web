@@ -16,7 +16,7 @@ const UserCard = ({ user }) => {
                     </p>
                     <p>{about}</p>
                     {/* <p>{skills.split(",")}</p> */}
-                    <div className="card-actions justify-end">
+                    <div className="card-actions justify-center">
                         <button className="btn btn-primary">Ignore</button>
                         <button className="btn btn-success">Interested</button>
                     </div>

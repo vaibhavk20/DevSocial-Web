@@ -10,6 +10,8 @@ import Feed from "./components/Feed";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Connections from "./components/Connections";
+import Requests from "./components/Requests";
 
 // 1. Define the routes as an array of objects
 const router = createBrowserRouter([
@@ -25,11 +27,13 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Feed />,
             },
-            { path: "/profile", element: <Profile /> },
             {
                 path: "/login",
                 element: <Login />,
             },
+            { path: "/profile", element: <Profile /> },
+            { path: "/connections", element: <Connections /> },
+            { path: "/requests", element: <Requests /> },
         ],
     },
 ]);
