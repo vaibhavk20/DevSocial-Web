@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
-import { addRequests } from "../utils/store/requestsSlice";
+import { addRequests, removeRequest } from "../utils/store/requestsSlice";
+import { useNavigate } from "react-router-dom";
 
 const Requests = () => {
     const dispatch = useDispatch();
     const requests = useSelector((store) => store.requests);
+    const navigate = useNavigate();
 
     const fetchRequests = async () => {
         try {
@@ -19,6 +21,26 @@ const Requests = () => {
             if (response.status === 200) {
                 console.log("Requests:z", response.data.data);
                 dispatch(addRequests(response.data.data));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const reviewRequests = async (status, requestId) => {
+        try {
+            // const allowedStatus = ["accepted", "rejected"];
+            const response = await axios.post(
+                `${BASE_URL}/request/review/${status}/${requestId}`,
+                {},
+                {
+                    withCredentials: true,
+                }
+            );
+            if (response.status === 200) {
+                // fetchRequests();
+                dispatch(removeRequest(requestId));
+                // navigate("/connections");
             }
         } catch (error) {
             console.log(error);
@@ -64,10 +86,20 @@ const Requests = () => {
                                 <p>{about}</p>
                             </div>
                             <div className="flex  ml-auto justify-center items-center gap-2">
-                                <button className="btn btn-sm btn-primary mr-2">
+                                <button
+                                    className="btn btn-sm btn-primary mr-2"
+                                    onClick={() =>
+                                        reviewRequests("accepted", request._id)
+                                    }
+                                >
                                     Accept
                                 </button>
-                                <button className="btn btn-sm btn-secondary">
+                                <button
+                                    className="btn btn-sm btn-secondary"
+                                    onClick={() =>
+                                        reviewRequests("rejected", request._id)
+                                    }
+                                >
                                     Reject
                                 </button>
                             </div>
