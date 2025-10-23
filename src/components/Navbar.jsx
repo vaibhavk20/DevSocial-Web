@@ -38,7 +38,7 @@ const Navbar = () => {
             </div>
 
             {user.isAuthenticated && (
-                <div className="flex gap-2">
+                <div className="flex gap-2 ">
                     <div className="dropdown dropdown-end">
                         <div
                             tabIndex={0}
